@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>org.telosys.studio</groupId>
+	<artifactId>telosys-studio</artifactId>
+	<packaging>jar</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Telosys Studio</name>
+	<description>Lightweight IDE for Telosys Code Generator</description>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+    
+	<dependencies>
+	
+ 		<dependency>
+			<groupId>org.telosys.tools</groupId>
+			<artifactId>telosys-tools-commons</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+ 
+ 		<!-- Just for tests with Maven dependencies -->
+<!--  		<dependency>
+			<groupId>org.nanoj</groupId>
+			<artifactId>nanoj-persistence-jpa</artifactId>
+			<version>0.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.golo-lang</groupId>
+			<artifactId>golo</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+ -->
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+			
+	</dependencies>
+  
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<!-- Maven assembly plugin : Everything in a single JAR file -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<!-- get all project dependencies -->
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<!-- MainClass in manifest make an executable jar -->
+					<archive>
+						<manifest>
+							<mainClass>org.telosys.studio.TelosysStudio</mainClass>
+						</manifest>
+					</archive>
+					<finalName>${project.artifactId}-${project.version}-full</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<!-- bind to the packaging phase -->
+						<phase>install</phase> 
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>				
+
+			</plugin>			
+		</plugins>
+	</build>
+	  
+</project>
