@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.telosys.studio.commons.Const;
 import org.telosys.studio.commons.Editor;
+import org.telosys.studio.commons.MsgBox;
 import org.telosys.studio.commons.ParentView;
 import org.telosys.studio.commons.ParentViewTab;
 import org.telosys.studio.commons.ViewUtil;
@@ -172,9 +173,6 @@ public class MainActions {
 	public void status() {
 		System.out.println("status()");
 		
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Status ");
-		alert.setHeaderText(null);
 		
 		ObservableList<Tab> tabs = _tabPane.getTabs();
 		StringBuilder sb = new StringBuilder() ;
@@ -192,21 +190,25 @@ public class MainActions {
 	        }
         }
 
-		alert.setContentText(sb.toString());
-		
+//		Alert alert = new Alert(AlertType.INFORMATION);
+//		alert.setTitle("Status ");
+//		alert.setHeaderText(null);
+//		alert.setContentText(sb.toString());
+//		alert.showAndWait();
 
-		alert.showAndWait();
+		MsgBox.info("Status", sb.toString());
 	}
 
 	public void about() {
 		System.out.println("about()");
 		
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("About Telosys Studio");
-		alert.setHeaderText(null);
-		alert.setContentText("My message");
-
-		alert.showAndWait();
+//		Alert alert = new Alert(AlertType.INFORMATION);
+//		alert.setTitle("About Telosys Studio");
+//		alert.setHeaderText(null);
+//		alert.setContentText("My message");
+//
+//		alert.showAndWait();
+		MsgBox.info("About Telosys Studio", "My message");
 	}
 
 }
